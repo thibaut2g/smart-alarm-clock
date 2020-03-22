@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row alarmSettingRow">
+        <div>
+            <button class="btn" id="return">Retour</button>
+        </div>
+        <h1>Paramètres réveil</h1>
+        {% for key, alarmSettingForm in alarmSettingForms %}
+            <div class="col s12 alarmSettingLine">
+                {% set formView = alarmSettingForm.createView() %}
+                {{ form_start(formView, {'attr': {'class': 'alarmSettingForm'} }) }}
+                <div class="row">
+                    <div class="col s3 input-field">
+                        <div class="hiddendiv">{{ form_widget(formView.day) }}</div>
+                        <p class="flow-text">{{ key }}</p>
+                    </div>
+                    <div class="col s3 input-field">
+                        {{ form_widget(formView.time, { 'attr': {'class': 'timepicker'} }) }}
+                    </div>
+                    <div class="col s4 input-field">
+                        {{ form_widget(formView.music) }}
+                    </div>
+                    <div class="col s2 input-field">
+                        {{ form_widget(formView.save, { 'attr': {'class': 'btn'} }) }}
+                    </div>
+                </div>
+                {{ form_end(formView) }}
+            </div>
+        {% endfor %}
+    </div>
+</div>

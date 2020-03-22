@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Smart Alarm Clock{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ asset('assets/css/materialize.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="content" class="container center pt-perspective">
+        {% block body %}{% endblock %}
+    </div>
+    <script src="{{ asset('assets/js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/materialize.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/time.js') }}"></script>
+    <script src="{{ asset('assets/js/joke.js') }}"></script>
+    <script src="{{ asset('assets/js/alarmSetting.js') }}"></script>
+</body>
+</html>
