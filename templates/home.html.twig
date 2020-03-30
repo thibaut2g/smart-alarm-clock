@@ -3,21 +3,22 @@
 {% block body %}
 
     {% block content %}
-        <div class="row pt-page pt-page-current" id="pt-page-1" style="background-color: #FFCD7D">
-            <h1>Hello Thibaut</h1>
-            <div class="col s6" style="margin-bottom: 1em">
+        <div class="row pt-page-current" id="pt-page-1">
+            <h4 class="headline">Hello Thibaut, here is your today's program 😃</h4>
+            <div class="col s6 center" style="margin-bottom: 1em; color:black">
                 <h2 id="time"></h2>
                 <h5 id="date"></h5>
                 {% include 'music.html.twig' %}
             </div>
             <div class="col s6">
+                {% include 'calendar.html.twig' %}
                 {% include 'joke.html.twig' %}
             </div>
             <div class="col s12">
                 {% include 'weather.html.twig' %}
             </div>
         </div>
-        <div class="row pt-page" id="pt-page-2" style="background-color: #FFCD7D">
+        <div class="row pt-page" id="pt-page-2" style="background-color: #0B63B3">
             {% include 'manage.html.twig' %}
             <div class="col s12">
                 <h1>Ajouter des musiques</h1>

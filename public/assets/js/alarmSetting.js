@@ -31,12 +31,12 @@
     function alertContents() {
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
             if (httpRequest.status !== 200) {
-                M.toast({html: 'Erreur web.. non enregistré :('})
+                M.toast({html: 'Erreur web.. non enregistré 😓'})
             } else {
                 if(httpRequest.responseText == "success") {
-                    M.toast({html: 'Enregistré ! ;)'})
+                    M.toast({html: 'Enregistré ! 😉'})
                 } else {
-                    M.toast({html: 'Erreur programme.. non enregistré :('})
+                    M.toast({html: 'Erreur programme.. non enregistré 😓'})
                 }
             }
         }

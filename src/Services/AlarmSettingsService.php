@@ -11,11 +11,15 @@ namespace App\Services;
 
 use App\Entity\AlarmSettings;
 use App\Form\AlarmSettingsType;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;
 
 class AlarmSettingsService
 {
     private $container;
+
+    private $em;
 
     private $musicDirectory;
 
@@ -39,9 +43,16 @@ class AlarmSettingsService
         "sunday" => "Dimanche"
     ];
 
-    public function __construct($musicDirectory, ContainerInterface $container)
+    /**
+     * AlarmSettingsService constructor.
+     * @param $musicDirectory
+     * @param ContainerInterface $container
+     * @param EntityManager $em
+     */
+    public function __construct($musicDirectory, ContainerInterface $container, EntityManagerInterface $em)
     {
         $this->container = $container;
+        $this->em = $em;
         $this->musicDirectory = $musicDirectory;
     }
 
@@ -56,8 +67,12 @@ class AlarmSettingsService
         }
 
         foreach (self::DAYS as $day) {
-            $alarmSetting = new AlarmSettings();
-            $alarmSetting->setDay($day);
+            $alarmSetting = $this->em->getRepository(AlarmSettings::class)->findOneBy(["day" => $day]);
+
+            if (!$alarmSetting) {
+                $alarmSetting = new AlarmSettings();
+                $alarmSetting->setDay($day);
+            }
 
             $dayName = self::DAY_NAMES[$day];
 

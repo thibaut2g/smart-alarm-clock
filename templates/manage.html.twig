@@ -1,8 +1,6 @@
 <div class="container">
     <div class="row alarmSettingRow">
-        <div>
-            <button class="btn" id="return">Retour</button>
-        </div>
+        <button class="btn left" id="return">Retour</button>
         <h1>Paramètres réveil</h1>
         {% for key, alarmSettingForm in alarmSettingForms %}
             <div class="col s12 alarmSettingLine">
@@ -20,11 +18,11 @@
                         {{ form_widget(formView.music) }}
                     </div>
                     <div class="col s2 input-field">
-                        {{ form_widget(formView.save, { 'attr': {'class': 'btn'} }) }}
+                        {{ form_widget(formView.save, { 'attr': {'class': 'btn'}, 'label': 'ok !' }) }}
                     </div>
                 </div>
                 {{ form_end(formView) }}
             </div>
         {% endfor %}
-    </div>
+    </div>d98711
 </div>
