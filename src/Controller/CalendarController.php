@@ -86,6 +86,8 @@ class CalendarController extends AbstractController
         $client->setApplicationName("Google Calendar API");
         $client->setScopes(Google_Service_Calendar::CALENDAR_READONLY);
         $client->setAuthConfig( $this->getParameter('kernel.project_dir').DIRECTORY_SEPARATOR.'config/credentials.json');
+        $client->setAccessType('offline');
+        $client->setPrompt('select_account consent');
 
         if (!empty($code)) {
             $accessToken = $client->fetchAccessTokenWithAuthCode($code);
@@ -177,8 +179,12 @@ class CalendarController extends AbstractController
         $explodedDate = explode(self::DATE_DELIMITER, $start);
         $day = $explodedDate[0];
 
-        $explodedTime = explode(self::TIME_DELIMITER, $explodedDate[1]);
-        $time = substr($explodedTime[0], 0, 5);
+        if (!empty($explodedDate[1])) {
+            $explodedTime = explode(self::TIME_DELIMITER, $explodedDate[1]);
+            $time = substr($explodedTime[0], 0, 5);
+        } else {
+            $time = "all day";
+        }
 
         $today = $dateTime->format('Y-m-d');
 
