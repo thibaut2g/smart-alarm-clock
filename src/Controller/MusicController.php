@@ -19,7 +19,7 @@ class MusicController extends AbstractController
      * @Route("/play_music", name="play_music")
      */
     public function play(){
-        $musicFileName = "les-demons-de-minuit.mp3";
+        $musicFileName = "owl_city_when_can_i_see_you_again.mp3";
 
         $musicDirectoryPath = $this->getParameter("music_directory_path");
 
@@ -27,7 +27,7 @@ class MusicController extends AbstractController
             throw new \Exception("MUSIC_DIRECTORY_PATH is empty in .env file.");
         }
 
-        $this->exec("vlc --one-instance ".$musicDirectoryPath.DIRECTORY_SEPARATOR.$musicFileName." --qt-start-minimized &");
+        $this->exec("vlc ".$musicDirectoryPath.$musicFileName." -I dummy");
         return new Response($this->getParsedMusicName($musicFileName));
     }
 
@@ -35,7 +35,7 @@ class MusicController extends AbstractController
      * @Route("/kill_music", name="kill_music")
      */
     public function quit(){
-        $this->exec("vlc --one-instance vlc:quit");
+        $this->exec("kill 3624");
         return new Response("Music");
     }
 
@@ -49,7 +49,10 @@ class MusicController extends AbstractController
             pclose(popen("start /B ". $cmd, "r"));
         }
         else {
-            exec($cmd . " > /dev/null &");
+            $output = array();
+            exec($cmd." > /dev/null 2>&1 & echo $!; ", $output);
+            var_dump($output);
+            die;
         }
     }
 }
