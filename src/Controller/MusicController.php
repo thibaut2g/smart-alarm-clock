@@ -8,51 +8,43 @@
 
 namespace App\Controller;
 
+use App\Entity\RaspbianHelper;
+use App\Services\MusicService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MusicController extends AbstractController
 {
+    const MUSIC_PID = "music_pid";
+    private $musicService;
+
+    public function __construct(MusicService $musicService)
+    {
+        $this->musicService = $musicService;
+    }
 
     /**
      * @Route("/play_music", name="play_music")
+     * @return Response
      */
     public function play(){
         $musicFileName = "owl_city_when_can_i_see_you_again.mp3";
 
-        $musicDirectoryPath = $this->getParameter("music_directory_path");
+        $musicName = $this->musicService->play($musicFileName);
 
-        if (empty($musicDirectoryPath)) {
-            throw new \Exception("MUSIC_DIRECTORY_PATH is empty in .env file.");
-        }
-
-        $this->exec("vlc ".$musicDirectoryPath.$musicFileName." -I dummy");
-        return new Response($this->getParsedMusicName($musicFileName));
+        return new Response($musicName);
     }
 
     /**
      * @Route("/kill_music", name="kill_music")
      */
     public function quit(){
-        $this->exec("kill 3624");
+
+        $this->musicService->quit();
+
         return new Response("Music");
     }
 
-    private function getParsedMusicName($musicFileName)
-    {
-        return ucfirst(str_replace("-", " ", substr($musicFileName, 0, strpos($musicFileName, "."))));
-    }
 
-    private function exec($cmd) {
-        if (substr(php_uname(), 0, 7) == "Windows"){
-            pclose(popen("start /B ". $cmd, "r"));
-        }
-        else {
-            $output = array();
-            exec($cmd." > /dev/null 2>&1 & echo $!; ", $output);
-            var_dump($output);
-            die;
-        }
-    }
 }

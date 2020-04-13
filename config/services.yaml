@@ -28,5 +28,9 @@ services:
           arguments:
                 - '%env(MUSIC_DIRECTORY_PATH)%'
 
+    App\Services\MusicService:
+          arguments:
+                - '%env(MUSIC_DIRECTORY_PATH)%'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

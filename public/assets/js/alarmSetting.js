@@ -18,8 +18,6 @@
         var day = item.querySelector("#alarm_settings_day").value;
         var time = item.querySelector("#alarm_settings_time").value;
         var music = item.querySelector("#alarm_settings_music").value;
-        console.log(time);
-
         var params = 'day=' + day + '&time=' + time + '&music=' + music;
 
         httpRequest.open('POST', '/save');

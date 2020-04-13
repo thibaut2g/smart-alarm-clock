@@ -28,6 +28,23 @@ body {
     color: black;
 }
 
+#alarmButton {
+    position: absolute;
+    top: 15vh;
+    left: 15vw;
+    height: 70vh;
+    width: 70vw;
+    background-color: #536aff;
+    z-index: 998;
+    text-align: center;
+}
+
+#alarmButton p {
+    padding: 10%;
+    font-size: 4em;
+
+}
+
 .alarmSettingRow {
     height:100vh;
     overflow-y: scroll;
