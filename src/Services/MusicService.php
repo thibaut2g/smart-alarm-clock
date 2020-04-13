@@ -38,10 +38,12 @@ class MusicService
     {
         if (substr(php_uname(), 0, 7) == "Windows") {
             $cmd = "vlc --one-instance " . $this->musicDirectory . DIRECTORY_SEPARATOR . $musicFileName . " --qt-start-minimized &";
+            $pid = false;
         } else {
             $cmd = "vlc ".$this->musicDirectory.$musicFileName." vlc://quit -I dummy";
+            $pid = true;
         }
-        $this->exec($cmd);
+        $this->exec($cmd, $pid);
 
         return $this->getParsedMusicName($musicFileName);
     }
