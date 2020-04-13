@@ -37,6 +37,7 @@ body {
     background-color: #536aff;
     z-index: 998;
     text-align: center;
+    cursor: pointer;
 }
 
 #alarmButton p {

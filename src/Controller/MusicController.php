@@ -8,7 +8,6 @@
 
 namespace App\Controller;
 
-use App\Entity\RaspbianHelper;
 use App\Services\MusicService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MusicController extends AbstractController
 {
-    const MUSIC_PID = "music_pid";
     private $musicService;
 
     public function __construct(MusicService $musicService)

@@ -14,6 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class MusicService
 {
+    const MUSIC_PID = "music_pid";
     private $musicDirectory;
     private $em;
 
