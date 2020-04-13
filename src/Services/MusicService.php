@@ -38,12 +38,12 @@ class MusicService
     {
         if (substr(php_uname(), 0, 7) == "Windows") {
             $cmd = "vlc --one-instance " . $this->musicDirectory . DIRECTORY_SEPARATOR . $musicFileName . " --qt-start-minimized &";
-            $pid = false;
+            $savePid = false;
         } else {
             $cmd = "vlc ".$this->musicDirectory.$musicFileName." vlc://quit -I dummy";
-            $pid = true;
+            $savePid = true;
         }
-        $this->exec($cmd, $pid);
+        $this->exec($cmd, $savePid);
 
         return $this->getParsedMusicName($musicFileName);
     }
@@ -99,7 +99,7 @@ class MusicService
         }
         $raspbianHelper->setValue($pid);
 
-        $this->em->persist($pid);
+        $this->em->persist($raspbianHelper);
         $this->em->flush();
     }
 }
