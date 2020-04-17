@@ -35,6 +35,18 @@ class MusicController extends AbstractController
     }
 
     /**
+     * @Route("/play_music/{musicFileName}", name="play_by_music_name")
+     * @param $musicFileName
+     * @return Response
+     */
+    public function playByMusicName($musicFileName){
+
+        $musicName = $this->musicService->play($musicFileName);
+
+        return new Response($musicName);
+    }
+
+    /**
      * @Route("/kill_music", name="kill_music")
      */
     public function quit(){
