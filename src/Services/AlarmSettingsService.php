@@ -101,7 +101,7 @@ class AlarmSettingsService
         if ($musicFileNames = scandir($musicDirectory)) {
             foreach ($musicFileNames as $musicFileName) {
                 if (!in_array($musicFileName, ['.', '..', 'desktop.ini', 'vlc-help.txt', 'keepItOn.mp3'])) {
-                    $musicName = $this->getMusicName($musicFileName);
+                    $musicName = $this->getParsedMusicName($musicFileName);
                     $musics[$musicName] = $musicFileName;
                 }
             }
@@ -112,8 +112,10 @@ class AlarmSettingsService
         return $musics;
     }
 
-    private function getMusicName($musicFileName)
+    private function getParsedMusicName($musicFileName)
     {
-        return ucfirst(str_replace("-", " ", substr($musicFileName, 0, strpos($musicFileName, "."))));
+        $musicFileName = str_replace("-", " ", substr($musicFileName, 0, strpos($musicFileName, ".")));
+        $musicFileName = str_replace("_", " ", $musicFileName);
+        return ucfirst($musicFileName);
     }
 }

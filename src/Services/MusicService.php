@@ -102,4 +102,12 @@ class MusicService
         $this->em->persist($raspbianHelper);
         $this->em->flush();
     }
+
+    public function turnOnScreen()
+    {
+        if (substr(php_uname(), 0, 7) != "Windows") {
+            $cmd = "vcgencmd display_power 1";
+            $this->exec($cmd);
+        }
+    }
 }

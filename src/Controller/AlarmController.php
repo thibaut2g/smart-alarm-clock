@@ -44,6 +44,7 @@ class AlarmController extends AbstractController
      */
     private function activeAlarm($musicFileName, $musicService)
     {
+        $musicService->turnOnScreen();
         return $musicService->play($musicFileName);
     }
 }
