@@ -100,7 +100,7 @@ class AlarmSettingsService
 
         if ($musicFileNames = scandir($musicDirectory)) {
             foreach ($musicFileNames as $musicFileName) {
-                if (!in_array($musicFileName, ['.', '..', 'desktop.ini', 'vlc-help.txt'])) {
+                if (!in_array($musicFileName, ['.', '..', 'desktop.ini', 'vlc-help.txt', 'keepItOn.mp3'])) {
                     $musicName = $this->getMusicName($musicFileName);
                     $musics[$musicName] = $musicFileName;
                 }
