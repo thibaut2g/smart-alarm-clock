@@ -6,7 +6,7 @@ function get_joke_of_the_day() {
            var jokeOfTheDayData = response.contents.jokes[0];
            var jokeTitle = jokeOfTheDayData.joke.title;
            var jokeContent = jokeOfTheDayData.joke.text;
-           document.getElementById("jokeTitle").innerHTML = jokeTitle;
+           //document.getElementById("jokeTitle").innerHTML = jokeTitle;
            document.getElementById("jokeContent").innerHTML = jokeContent;
         }
     };

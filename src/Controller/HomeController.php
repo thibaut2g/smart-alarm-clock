@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Entity\AlarmSettings;
 use App\Services\AlarmSettingsService;
+use App\Services\MusicService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,9 +22,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      * @param AlarmSettingsService $alarmSettingsService
+     * @param MusicService $musicService
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function home(AlarmSettingsService $alarmSettingsService){
+    public function home(AlarmSettingsService $alarmSettingsService, MusicService $musicService){
+        // permet de cacher la souris
+        $musicService->exec('unclutter -idle 0 -root');
         $alarmSettingForms = $alarmSettingsService->getAlarmForms();
         return $this->render('home.html.twig', ["alarmSettingForms" => $alarmSettingForms]);
     }

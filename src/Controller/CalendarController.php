@@ -66,6 +66,8 @@ class CalendarController extends AbstractController
                     $start = $event->start->date;
                 }
                 $dayAndTime = $this->getDayAndTime($start);
+
+
                 $response[$dayAndTime["day"]][] = ["time" => $dayAndTime["time"], "summary" => $event->getSummary()];
             }
         }
@@ -201,7 +203,7 @@ class CalendarController extends AbstractController
         } elseif ($day == $afterTomorrow) {
             return ["day" => "Après-demain", "time" => $time];
         } else {
-            return "Autre";
+            return ["day" => "Autre", "time" => $time];
         }
     }
 }

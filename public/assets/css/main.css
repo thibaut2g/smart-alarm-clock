@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 body {
-    background-color: #0B63B3;
-    color: #d98711;
+    background-color: #383838;
+    color: #f66b11;
+    font-family: 'Nunito', sans-serif;
 }
 
 .headline {
@@ -8,11 +10,11 @@ body {
 }
 
 .jokeDiv {
-    border-right: 5px solid #d98711;
-    border-bottom: 5px solid #d98711;
-    background-image:linear-gradient(60deg, #d98711, #0B63B3);
+    border-right: 5px solid #f66b11;
+    border-bottom: 5px solid #f66b11;
     padding: 25px;
-    color: black;
+    color: #f66b11;
+    border-radius: 10px 0;
 }
 
 #calendarContent {
@@ -24,8 +26,13 @@ body {
 }
 
 .musicDiv {
-    background-color: #d98711;
-    color: black;
+    background-color: #f66b11;
+    color: #383838;
+    border-radius: 10px;
+}
+
+.weatherwidget-io {
+    border-radius: 10px;
 }
 
 #alarmButton {
@@ -52,7 +59,7 @@ body {
 }
 
 .alarmSettingLine {
-    border-bottom: 3px solid #d98711;
+    border-bottom: 3px solid #f66b11;
     padding: 25px;
 }
 
@@ -123,4 +130,8 @@ body {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #555;
+}
+
+#time {
+    margin-top: 20px;
 }

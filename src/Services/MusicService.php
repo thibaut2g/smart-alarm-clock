@@ -68,7 +68,7 @@ class MusicService
         return ucfirst($musicFileName);
     }
 
-    private function exec($cmd, $savePid = false) {
+    public function exec($cmd, $savePid = false) {
         if (substr(php_uname(), 0, 7) == "Windows"){
             pclose(popen("start /B ". $cmd, "r"));
         }
